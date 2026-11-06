@@ -10,8 +10,11 @@ RAMP=(233 235 237 239 58 94 100 136 172 178 214 220 221 222)
 
 # Sound effect: pass a file as the first argument, or put one at the default path.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SOUND="$SCRIPT_DIR/$SEARCH_FOR_SOUND"
+SOUND="$1"
 SND_PID=""
+if [[ -z $SOUND ]]; then
+    SOUND="$SCRIPT_DIR/$SEARCH_FOR_SOUND"
+fi
 
 # Runs in a background subshell; exec makes the player's PID the one we track.
 play_sound() {
